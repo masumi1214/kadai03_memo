@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音声メモパッド</title>
+    <style>
+        /* UIのスタイルは前回のコードからそのまま使用 */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            margin: 0 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            resize: none;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+        .summary, .hashtags {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #555;
+            min-height: 50px;
+            margin-bottom: 10px;
+        }
+        .hashtags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .hashtag {
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            padding: 5px 10px;
+            font-size: 14px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>音声メモパッド</h1>
+        <div class="controls">
+            <button id="startRecording">🎙️ 録音開始</button>
+            <button id="stopRecording" disabled>⏹️ 録音停止</button>
+        </div>
+        <textarea id="memoInput" placeholder="ここに音声から変換されたメモが表示されます..." readonly></textarea>
+        <div class="controls">
+            <button onclick="generateSummary()">📝 要約を生成</button>
+            <button onclick="generateHashtags()"># ハッシュタグ生成</button>
+        </div>
+        <div id="summary" class="summary">要約がここに表示されます...</div>
+        <div id="hashtags" class="hashtags"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
